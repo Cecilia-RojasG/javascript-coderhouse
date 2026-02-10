@@ -339,6 +339,51 @@ hr {
     transform: translateX(-50%);
 }
 
+/* Estilos para el cuadro de diálogo de confirmacion*/
+#modalConfirmacion {
+    width: 90%;
+    max-width: 400px;
+    border: none;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+#modalConfirmacion::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px); 
+}
+
+#mensajeConfirmacion {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.botones-modal {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-modal-primario, .btn-modal-secundario {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-modal-primario:hover, .btn-modal-secundario:hover {
+    opacity: 0.8;
+}
 
 /* Ajuste responsive para móviles */
 @media (max-width: 768px) {

@@ -28,7 +28,8 @@ botonBuscador.onclick = () => {
         contenedor.innerHTML = ""
         return
     }
-    //Para juntar todos los productos copiandolos en un array, agregando la categoria correspondiente
+    //Para juntar todos los productos copiandolo con un map por categoria en un array, agregando la categoria correspondiente
+    //y usando un operador de propagación para que no quede como un array de arrays y todo quede simple.
     const todosLosProductos = [
         ...libros.map(p => ({...p, categoria: 'Libros'})),
         ...juegosRol.map(p => ({...p, categoria: 'Juegos de Rol'})),
