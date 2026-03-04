@@ -1,0 +1,90 @@
+[
+    {
+        "codigo": 2001,
+        "imagen": "",
+        "nombre": "Vampiro",
+        "autor": "WoD",
+        "precio":59990,
+        "existencia": 5
+        },
+    {
+        "codigo": 2002,
+        "imagen": "",
+        "nombre": "Hombre Lobo",
+        "autor": "Wod",
+        "precio": 59990,
+        "existencia": 2
+    },
+    {
+        "codigo": 2003,
+        "imagen": "",
+        "nombre": "D&D Manual del Master",
+        "autor": "WotC",
+        "precio": 65990,
+        "existencia": 3
+    },
+    {
+        "codigo": 2004,
+        "imagen": "",
+        "nombre": "D&D Manual del Jugador",
+        "autor": "WotC",
+        "precio": 65990,
+        "existencia": 6
+    },
+    {
+        "codigo": 2005,
+        "imagen": "",
+        "nombre": "D&D Las Tierras mas allá de Brujaluz",
+        "autor": "WotC",
+        "precio": 49990,
+        "existencia": 9
+    },
+    {
+        "codigo": 2006,
+        "imagen": "",
+        "nombre": "L5R",
+        "autor": "FFG",
+        "precio": 45990,
+        "existencia": 6
+    },
+    {
+        "codigo": 2007,
+        "imagen": "",
+        "nombre": "Cthulhu Confidencial",
+        "autor": "EDGE",
+        "precio": 39990,
+        "existencia": 2
+    },
+    {
+        "codigo": 2008,
+        "imagen": "",
+        "nombre": "7mar",
+        "autor": "NOSOLOROL",
+        "precio": 54990,
+        "existencia": 8
+    },
+    {
+        "codigo": 2009,
+        "imagen": "",
+        "nombre": "Alien",
+        "autor": "EDGE",
+        "precio": 52990,
+        "existencia": 2
+    }, 
+    {
+        "codigo": 2010,
+        "imagen": "",
+        "nombre": "Changeling",
+        "autor": "WoD",
+        "precio": 5990,
+        "existencia": 1
+    },  
+    {
+        "codigo": 2011,
+        "imagen": "",
+        "nombre": "Forbidden lands",
+        "autor": "NOSOLOROL",
+        "precio": 59990,
+        "existencia": 5
+    }
+]

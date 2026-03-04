@@ -1,0 +1,42 @@
+[
+    {
+        "codigo": 3001,
+        "imagen": "",
+        "nombre": "Catan",
+        "autor": "Devir",
+        "precio": 34990,
+        "existencia": 5
+    },  
+    {
+        "codigo": 3002,
+        "imagen": "",
+        "nombre": "Azul - Master Chocolatier",
+        "autor": "Next Move",
+        "precio": 44990,
+        "existencia": 5
+    },  
+    {
+        "codigo": 3003,
+        "imagen": "",
+        "nombre": "Munchkin",
+        "autor": "EDGE",
+        "precio": 25990,
+        "existencia": 5
+    },  
+    {
+        "codigo": 3004,
+        "imagen": "",
+        "nombre": "Monopoly",
+        "autor": "Hasbro",
+        "precio": 19900,
+        "existencia": 0
+    },  
+    {
+        "codigo": 3005,
+        "imagen": "",
+        "nombre": "Carcassone",
+        "autor": "Devir",
+        "precio": 29990,
+        "existencia": 5
+    }
+]

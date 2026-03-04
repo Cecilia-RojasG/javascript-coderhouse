@@ -1,0 +1,114 @@
+[                                       
+    {
+        "codigo": 1001,
+        "imagen": "",
+        "nombre": "We don't need roads: The Making of the Back to the Future Trilogy",
+        "autor": "Caseen Grines",
+        "precio":  21990,
+        "existencia": 1
+    },
+    {
+        "codigo": 1002,
+        "imagen": "",
+        "nombre": "Choque de Reyes",
+        "autor": "George R.R. Martin",
+        "precio": 14990,
+        "existencia": 2
+    },
+    {
+        "codigo": 1003,
+        "imagen": "",
+        "nombre": "Cochrane vs Cthulhu",
+        "autor": "Gilberto Villarroel", 
+        "precio": 17990,
+        "existencia": 3
+    },
+    {
+        "codigo": 1004,
+        "imagen": "",
+        "nombre": "Frontera Sur",
+        "autor": "Gillermo Parvex",
+        "precio": 15990,
+        "existencia": 4
+    },
+    {
+        "codigo": 1005,
+        "imagen": "",
+        "nombre": "El Misterio de los Estudios Kellerman",
+        "autor": "Ken Follet",
+        "precio": 11990,
+        "existencia": 5
+    },
+    {
+        "codigo": 1006,
+        "imagen": "",
+        "nombre": "La Materia Oscura",
+        "autor": "Phillip Pullman",
+        "precio": 17990,
+        "existencia": 6
+    },
+    {
+        "codigo": 1007,
+        "imagen": "",
+        "nombre": "Mónica la niña daltónica y Federico el perro psicodélico",
+        "autor": "",
+        "precio": 3990,
+        "existencia": 5
+    },
+    {
+        "codigo": 1008,
+        "imagen": "",
+        "nombre": "Orgullo y Prejuicio + Zombies",
+        "autor": "Gabriel Aiquel",
+        "precio": 9990,
+        "existencia": 4
+    },
+    {
+        "codigo": 1009,
+        "imagen": "",
+        "nombre": "Sobrenatural",
+        "autor": "Kiersten White",
+        "precio": 19990,
+        "existencia": 3
+    },
+    {
+        "codigo": 1010,
+        "imagen": "",
+        "nombre": "Soñar no cuesta nada",
+        "autor": "Alberto Montt",
+        "precio": 12990,
+        "existencia": 2
+    },
+    {
+        "codigo": 1011,
+        "imagen": "",
+        "nombre": "Viaje Alucinante II", 
+        "autor": "Isaac Asimov",
+        "precio": 10990,
+        "existencia": 2
+    }, 
+    {
+        "codigo": 1012,
+        "imagen": "",
+        "nombre": "Viajeros de la noche",
+        "autor": "George R.R. Martin",
+        "precio": 11990,
+        "existencia": 7
+    },
+    {
+        "codigo": 1013,
+        "imagen": "",
+        "nombre": "El cielo Enjaulado",
+        "autor": "Christine Leunens",
+        "precio": 6990,
+        "existencia": 8
+    },
+    {
+        "codigo": 1014,
+        "imagen": "",
+        "nombre": "Walt's Imagination",
+        "autor": "Doreen Rapaport",
+        "precio": 6990,
+        "existencia": 6
+    }
+]

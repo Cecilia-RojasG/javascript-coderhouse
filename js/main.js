@@ -5,10 +5,10 @@ const botonBuscador = document.getElementById("btnBusqueda")
 function renderizarProductos(lista) {
     contenedor.innerHTML = "" 
     if (lista.length === 0) {
-        mostrarAlerta("No se encontraron productos.")
+        showToast ("No se encontraron coincidencias.", "#ff5f6d")
         return
     }else{
-        mostrarAlerta("Coincidencias encontradas:")
+        showToast ("Coincidencias encontradas:")
         lista.forEach(producto => {
             const card = document.createElement("div")
             card.className = "cardProduct"
@@ -23,17 +23,25 @@ function renderizarProductos(lista) {
 }
 
 botonBuscador.onclick = () => {
+    if (!contenedor) return; 
     const itemBuscado = buscador.value.toLowerCase()
     if (itemBuscado === "") {
         contenedor.innerHTML = ""
         return
     }
+    const inventarioActual = JSON.parse(localStorage.getItem("inventarioCompleto"));
+    
+    if (!inventarioActual) {
+        showToast("Error: Inventario no cargado todavía.");
+        return;
+    }
+
     //Para juntar todos los productos copiandolo con un map por categoria en un array, agregando la categoria correspondiente
     //y usando un operador de propagación para que no quede como un array de arrays y todo quede simple.
     const todosLosProductos = [
-        ...libros.map(p => ({...p, categoria: 'Libros'})),
-        ...juegosRol.map(p => ({...p, categoria: 'Juegos de Rol'})),
-        ...juegosMesa.map(p => ({...p, categoria: 'Juegos de Mesa'}))
+        ...inventarioActual.libros.map(p => ({...p, categoria: 'Libros'})),
+        ...inventarioActual.juegosRol.map(p => ({...p, categoria: 'Juegos de Rol'})),
+        ...inventarioActual.juegosMesa.map(p => ({...p, categoria: 'Juegos de Mesa'}))
     ]
     //Para asegurarse de encontrar todas las coincidencias con el termino ingresado
     const filtrados = todosLosProductos.filter(p => 
@@ -45,9 +53,6 @@ botonBuscador.onclick = () => {
 
     renderizarProductos(filtrados)
     buscador.value = ""; 
-    if (filtrados.length === 0) {
-        mostrarAlerta("No se encontraron coincidencias.")
-    }
 }
 
 

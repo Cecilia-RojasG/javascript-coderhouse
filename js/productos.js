@@ -1,12 +1,70 @@
-productsContainer = document.getElementById("contenedorDeProductos")
-categoriasDeProductos = [
-    {nombre: "Libros", contenido: libros}, 
-    {nombre: "Juegos de Rol", contenido: juegosRol}, 
-    {nombre: "Juegos de Mesa", contenido: juegosMesa}
-]
-let todosLosProductos = []
+const URL_LIBROS = "../db/libros.json"
+const URL_ROL = "../db/rol.json"
+const URL_MESA = "../db/mesa.json"
 
-function renderProductos (arrayDeProductos) {
+const inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
+
+let libros = []
+let juegosRol = []
+let juegosMesa = []
+let productos = []
+let carroProductos = JSON.parse(localStorage.getItem("carroProductos")) || []
+productsContainer = document.getElementById("contenedorDeProductos")
+
+function cargarInventario(){
+    if (inventarioGuardado) {
+        // Si hay datos anteriores, actualiza el inventario
+        libros = inventarioGuardado.libros
+        juegosRol = inventarioGuardado.juegosRol
+        juegosMesa = inventarioGuardado.juegosMesa
+        //Para que quede en un solo array
+        productos = [...libros, ...juegosRol, ...juegosMesa]
+        // Si hay datos anteriores, renderiza
+        prepararCategoriasYRenderizar()
+    } else {
+        // Si no hay LocalStorage, cargar por fetch
+        fetch(URL_LIBROS)
+            .then(res => res.json())
+            .then(dataLibros => {
+                libros = dataLibros
+                return fetch(URL_ROL) 
+            })
+            .then(res => res.json())
+            .then(dataRol => {
+                juegosRol = dataRol
+                return fetch(URL_MESA)
+            })
+            .then(res => res.json())
+            .then(dataMesa => {
+                juegosMesa = dataMesa
+
+                //Guardar en localStorage para otra vez
+                const inventarioParaGuardar = { libros, juegosRol, juegosMesa }
+                localStorage.setItem("inventarioCompleto", JSON.stringify(inventarioParaGuardar))
+                 //Para que quede en un solo array
+                productos = [...libros, ...juegosRol, ...juegosMesa]
+                // renderiza
+                prepararCategoriasYRenderizar();
+            })
+            .catch(error => {
+                showToast("Error al cargar los datos", "#ff5f6d")
+            })
+            .finally(() => {
+                showToast("Proceso de carga finalizado")
+            });
+    }
+}
+
+function prepararCategoriasYRenderizar() {
+    categoriasDeProductos = [
+        {nombre: "Libros", contenido: libros}, 
+        {nombre: "Juegos de Rol", contenido: juegosRol}, 
+        {nombre: "Juegos de Mesa", contenido: juegosMesa}
+    ]
+    renderDe(categoriasDeProductos)
+}
+
+function renderProductos (arrayDeProductos, contenedorSeccion) {
     arrayDeProductos.forEach(producto => {
         const card = document.createElement("div")
         card.className = "cardProduct"
@@ -22,27 +80,29 @@ function renderProductos (arrayDeProductos) {
             <p>${producto.autor}</p>
             <p>$${producto.precio.toLocaleString('es-CL')}</p>
             <button class="${claseBoton}" codigo="${producto.codigo}" ${atributoDisabled}>${textoBoton}</button>`
-        productsContainer.appendChild(card)
+        
+        contenedorSeccion.appendChild(card)
     })
 }
 
 function renderDe (categorias){
+    if (!productsContainer) return; 
+    
     productsContainer.innerHTML = ""; 
     categorias.forEach(categoria => {
-        const seccion = document.createElement("div")
-        seccion.className = "seccionCategoria"
         const titulo = document.createElement("h3")
         titulo.innerText = categoria.nombre
-        titulo.className = "tituloCategoria";
-        productsContainer.appendChild(titulo);
-        renderProductos(categoria.contenido);
-        const filaCards = document.createElement("div");
-        filaCards.className = "filaProductos";
-    })
-    agregarAlCarrito();
-}
+        titulo.className = "tituloCategoria"
+        productsContainer.appendChild(titulo)
 
-renderDe (categoriasDeProductos)
+        const filaCards = document.createElement("div")
+        filaCards.className = "filaProductos"
+        productsContainer.appendChild(filaCards)
+
+        renderProductos(categoria.contenido, filaCards)
+    })
+    agregarAlCarrito()
+}
 
 function agregarAlCarrito () {
     addButton = document.querySelectorAll(".productoAgregar")
@@ -64,8 +124,11 @@ function agregarAlCarrito () {
                     carroProductos.push({ ...productoElegido, cantidad: 1 })
                 }
                 localStorage.setItem("carroProductos", JSON.stringify(carroProductos))
+                showToast(`Producto añadido: ${productoElegido.nombre}`);
             }
         }
     })
 }
+
+cargarInventario()
 

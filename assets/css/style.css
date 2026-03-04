@@ -124,6 +124,11 @@ main {
 .tituloH2 {
     display: flex;
     padding: 30px 30px 0px 30px;
+    margin-bottom: 0; 
+}
+
+.tituloH2 h2 {
+    margin: 0; 
 }
 
 #contenedorDeProductos {
@@ -131,8 +136,8 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 30px;
-    margin-top: 10vh;
+    padding: 25px 30px;
+    margin-top: 0;
 }
 
 #carrito {
@@ -148,13 +153,18 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center; 
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 /* Títulos de categorías*/
 .tituloCategoria {
     width: 100%;
     color: #ffffff;
+    margin: 10px 0; 
+    font-size: 1.4rem;
+    text-transform: uppercase;
 }
 
 /* Configuraciones para las cards*/
@@ -164,8 +174,11 @@ main {
     justify-content: space-between;
     background-color: #fff;
     width: 300px;
+    height: 400px;
     margin: 0;
     padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .cardProduct h4 {

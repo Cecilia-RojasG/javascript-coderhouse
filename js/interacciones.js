@@ -2,16 +2,6 @@ const alerta = document.createElement("div");
 alerta.id = "avisoAlerta";
 document.body.appendChild(alerta);
 
-function mostrarAlerta(mensaje) {
-    alerta.innerText = mensaje;
-    alerta.style.opacity = "1";
-    alerta.style.display = "block";
-    
-    alerta.addEventListener('transitionend', () => {
-        alerta.style.display = "none";
-    }, { once: true }); 
-}
-
 //Para poder mostrar el mensaje de consulta (modal)
 const modal = document.getElementById("modalConfirmacion")
 const mensajeModal = document.getElementById("mensajeConfirmacion")
@@ -27,4 +17,21 @@ function pedirConfirmacion(mensaje, accion) {
         modal.close()
     }    
     btnCancelar.onclick = () => modal.close()
+}
+
+function showToast(mensaje, color = "linear-gradient(to right, #00b09b, #96c93d)") {
+    Toastify({
+        text: mensaje,
+        duration: 3500,
+        destination: "#",
+        newWindow: false,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: color,
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
 }
