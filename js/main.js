@@ -3,7 +3,9 @@ const buscador = document.getElementById("inputBusqueda")
 const botonBuscador = document.getElementById("btnBusqueda")
 
 botonBuscador.onclick = () => {
-    if (!contenedor) return; 
+    if (!contenedor) return 
+    contenedor.innerHTML = ""
+
     const itemBuscado = buscador.value.toLowerCase().trim()
     if (itemBuscado === "") {
         contenedor.innerHTML = ""
@@ -37,9 +39,13 @@ botonBuscador.onclick = () => {
             precio.includes(itemBuscado)
         );
 })
-    showToast("Productos encontrados");
-    renderProductos(filtrados, contenedor)
-    agregarAlCarrito();
+    if (filtrados.length === 0) {
+        showToast("No se encontraron coincidencias", "#833737")
+    } else {
+        showToast("Productos encontrados")
+        renderProductos(filtrados, contenedor)
+        agregarAlCarrito()
+    }
     buscador.value = ""; 
 }
 

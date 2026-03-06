@@ -2,7 +2,7 @@ const URL_LIBROS = "../db/libros.json"
 const URL_ROL = "../db/rol.json"
 const URL_MESA = "../db/mesa.json"
 
-const inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
+let inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
 
 let libros = []
 let juegosRol = []
@@ -12,6 +12,19 @@ let carroProductos = JSON.parse(localStorage.getItem("carroProductos")) || []
 productsContainer = document.getElementById("contenedorDeProductos")
 
 function cargarInventario(){
+    if (productsContainer) {
+        // si un link a una imagen se rompe o no la imagen no esta
+        productsContainer.addEventListener('error', function(event) {
+            const placeholder = "../assets/img/placeholder.png"
+            if (event.target.tagName === 'IMG') {
+                // para evitar un bucle
+                if (event.target.src !== placeholder) {
+                    event.target.src = placeholder
+                }
+            }
+        }, true); 
+    }
+    
     if (inventarioGuardado) {
         // Si hay datos anteriores, actualiza el inventario
         libros = inventarioGuardado.libros
@@ -19,8 +32,8 @@ function cargarInventario(){
         juegosMesa = inventarioGuardado.juegosMesa
         //Para que quede en un solo array
         productos = [...libros, ...juegosRol, ...juegosMesa]
-        // Si hay datos anteriores, renderiza
-        prepararCategoriasYRenderizar()
+        // Si hay datos anteriores, renderiza, solo si esta en la pagina productos
+        if (productsContainer) prepararCategoriasYRenderizar()
     } else {
         // Si no hay LocalStorage, cargar por fetch
         fetch(URL_LIBROS)
@@ -43,11 +56,11 @@ function cargarInventario(){
                 localStorage.setItem("inventarioCompleto", JSON.stringify(inventarioParaGuardar))
                  //Para que quede en un solo array
                 productos = [...libros, ...juegosRol, ...juegosMesa]
-                // renderiza
-                prepararCategoriasYRenderizar();
+                // renderiza si el contenedor existe
+                if (productsContainer) prepararCategoriasYRenderizar();
             })
             .catch(error => {
-                showToast("Error al cargar los datos", "#ff5f6d")
+                showToast(("Error al cargar los datos", "#ff5f6d"), error)
             })
             .finally(() => {
                 showToast("Proceso de carga finalizado")
@@ -65,17 +78,7 @@ function prepararCategoriasYRenderizar() {
 }
 
 function renderProductos (arrayDeProductos, contenedorSeccion) {
-    // si un link a una imagen se rompe o no la imagen no esta
-    productsContainer.addEventListener('error', function(event) {
-        if (event.target.tagName === 'IMG') {
-            const placeholder = "../assets/img/placeholder.png"
-            // para evitar un bucle
-            if (event.target.src !== placeholder) {
-                event.target.src = placeholder
-            }
-        }
-    }, true); 
-
+    const placeholder = "../assets/img/placeholder.png"; 
     arrayDeProductos.forEach(producto => {
         const card = document.createElement("div")
         card.className = "cardProduct"
