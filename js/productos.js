@@ -1,7 +1,10 @@
-const URL_LIBROS = "../db/libros.json"
-const URL_ROL = "../db/rol.json"
-const URL_MESA = "../db/mesa.json"
-const placeholder = "../assets/img/placeholder.png"
+const esSubpagina = window.location.pathname.includes("/pages/");
+const prefijo = esSubpagina ? "../db/" : "db/";
+
+const URL_LIBROS = prefijo + "libros.json";
+const URL_ROL = prefijo + "rol.json";
+const URL_MESA = prefijo + "mesa.json";
+const placeholder = prefijo + "placeholder.png"
 
 let inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
 
