@@ -78,20 +78,20 @@ main {
     justify-content: center; 
     align-items: center;     
     width: 100%;
-    margin-top: 50px;        
-    margin-bottom: 20px;     
+    padding: 30px 30px 0px 30px;
+    margin-top: 20px;        
+    margin-bottom: 60px;     
 }
 
-#contenedorResultados {
+#contenedorResultados,
+#contenedorDeProductos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 30px;
+    padding: 25px 30px;
+    margin-top: 0;
     width: 100%;
-    margin-top: 10vh;
-    margin-bottom: 30px;
-    min-height: 200px;
 }
 
 #inputBusqueda {
@@ -124,20 +124,12 @@ main {
 .tituloH2 {
     display: flex;
     padding: 30px 30px 0px 30px;
+    margin-top: 20px; 
     margin-bottom: 0; 
 }
 
 .tituloH2 h2 {
     margin: 0; 
-}
-
-#contenedorDeProductos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 25px 30px;
-    margin-top: 0;
 }
 
 #carrito {

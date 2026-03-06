@@ -6,10 +6,11 @@ let costoEnvio = 0
 const costoEstandar = 3500
 
 function renderCarrito (cartItems) {
-    if (!carroSeccion) return; // Si no hay ID "carrito", detiene la función
-    carroSeccion.innerHTML = ""
+    if (!carroSeccion) return
+        carroSeccion.innerHTML = ""
     if (cartItems.length === 0) {
         carroSeccion.innerHTML = "<p id = carritoVacio>Su carrito está vacío.</p>"
+        volverComprar()
         return;
     }
     const cabecera = document.createElement("div")
@@ -53,7 +54,7 @@ function renderCarrito (cartItems) {
         btn.onclick = (e) => {
             const index = e.target.getAttribute("data-index")
             const prod = cartItems[index]
-            // Validamos contra la existencia original
+            // Validar contra la existencia original
             if (prod.cantidad < prod.existencia) {
                 prod.cantidad++
                 actualizarTodo()
@@ -69,11 +70,15 @@ function renderCarrito (cartItems) {
             if (cartItems[index].cantidad > 1) {
                 cartItems[index].cantidad--
             } else {
-                // Si llega a 0 elimina el producto
-                cartItems.splice(index, 1)
-                showToast ("Producto eliminado del carrito")
+                //Para evitar que se elimine el producto sorpresivamente o por error
+                pedirConfirmacion("¿Quitar este producto?", () => {
+                    cartItems.splice(index, 1)
+                    showToast ("Producto eliminado del carrito")
+                    actualizarTodo()
+                })
+                return;
             }
-            actualizarTodo();
+            actualizarTodo()
         };
     });
     
@@ -118,11 +123,7 @@ function renderCarrito (cartItems) {
     // --- SECCIÓN DE ENVÍO ---
     const seccionEnvio = document.createElement("div")
     seccionEnvio.className = "carritoEnvio"
-    let mostrarPrecioEnvio = ""
-
-    if (costoEnvio > 0) {
-        mostrarPrecioEnvio = `<strong>$${costoEstandar.toLocaleString('es-CL')}</strong>`;
-    }
+    let mostrarPrecioEnvio = costoEnvio > 0 ? `<strong>$${costoEstandar.toLocaleString('es-CL')}</strong>` : "";
 
     seccionEnvio.innerHTML = `
         <hr>
@@ -132,6 +133,10 @@ function renderCarrito (cartItems) {
                 ¿Desea envío a domicilio?, (Valor Estandard $3.500)
             </label>
             ${mostrarPrecioEnvio}
+        </div>
+        <div id="datosEnvio" style="display: ${costoEnvio > 0 ? "block" : "none"}; margin-top: 10px;">
+            <strong>NOMBRE: </strong><input type="text" id="nombreCliente" placeholder="Nombre de quien recibe" style="width: 100%; margin-bottom: 5px;">
+            <strong>DIRECCIÓN: </strong><input type="text" id="direccionCliente" placeholder="Dirección de entrega (Calle, Número, Comuna)" style="width: 100%;">
         </div>
     `;
     carroSeccion.appendChild(seccionEnvio)
@@ -145,6 +150,30 @@ function renderCarrito (cartItems) {
         }
         renderCarrito(cartItems); 
     };
+
+    // --- SECCIÓN DOCUMENTO (Boleta/Factura) ---
+    const seccionDocumento = document.createElement("div")
+    seccionDocumento.className = "carritoDocumento"
+    seccionDocumento.innerHTML = `
+        <hr>
+        <div class="tipoDoc">
+            <label><input type="radio" name="tipoDoc" value="boleta" checked> Boleta</label>
+            <label><input type="radio" name="tipoDoc" value="factura"> Factura</label>
+        </div>
+        <div id="datosFactura" style="display: none; margin-top: 10px; font-size: 0.9em;">
+            <strong>RUT: </strong><input type="text" id="rutFactura" placeholder="RUT (12.345.678-9)" style="width: 100%; margin-bottom: 5px;">
+            <strong>GIRO: </strong><input type="text" id="giroFactura" placeholder="Giro Comercial" style="width: 100%;">
+        </div>
+    `;
+    carroSeccion.appendChild(seccionDocumento);
+    // Si se elige factura se muestra los datos de factura
+    const radioFactura = seccionDocumento.querySelectorAll('input[name="tipoDoc"]');
+    radioFactura.forEach(radio => {
+        radio.onchange = (e) => {
+            const panel = document.getElementById("datosFactura");
+            panel.style.display = e.target.value === "factura" ? "block" : "none";
+        }
+    })
 
     //Para calcular valor Total
     totDes = parseInt(totalDescuento.toFixed(0))
@@ -183,6 +212,7 @@ function renderCarrito (cartItems) {
     //Para comprar el carro
     document.getElementById("pagarCarrito").onclick = () => {
         if (carroProductos.length > 0) {
+            const tipoDocSeleccionado = document.querySelector('input[name="tipoDoc"]:checked').value;
             pedirConfirmacion("¿Deseas continuar con el pago?", () => {
                 const subtotal = carroProductos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0)
                 const descuento = parseInt((subtotal * descuentoPercent).toFixed(0))
@@ -196,21 +226,52 @@ function renderCarrito (cartItems) {
                 const inv = JSON.parse(localStorage.getItem("inventarioCompleto"))
                 if (!inv) return;
 
-                const inventarioTemporal = [...inv.libros, ...inv.juegosRol, ...inv.juegosMesa]
-
+                // Busca en cada categoría del objeto original para que quede el cambio al comprar
                 carroProductos.forEach(itemEnCarrito => {
-                    const productoMaestro = inventarioTemporal.find(p => p.codigo === itemEnCarrito.codigo)
-                    if (productoMaestro) {
-                        productoMaestro.existencia -= itemEnCarrito.cantidad
+                    let encontrado = inv.libros.find(p => p.codigo === itemEnCarrito.codigo) ||
+                                    inv.juegosRol.find(p => p.codigo === itemEnCarrito.codigo) ||
+                                    inv.juegosMesa.find(p => p.codigo === itemEnCarrito.codigo);
+                    
+                    if (encontrado) {
+                        encontrado.existencia -= itemEnCarrito.cantidad;
                     }
                 });
-                
+                // Guarda el objeto inv que ya tiene los valores restados
                 localStorage.setItem("inventarioCompleto", JSON.stringify(inv))
 
-                // Mostrar la boleta al final usando SweetAlert2)
+                // En caso de que se marque la opcion de envio, debe pedir datos
+                const deseaEnvio = document.getElementById("checkEnvio").checked;
+                let datosEntregaHtml = "";
+                if (deseaEnvio) {
+                    const nombre = document.getElementById("nombreCliente").value || "No especificado";
+                    const direccion = document.getElementById("direccionCliente").value || "No especificada";
+                    datosEntregaHtml = `
+                        <p><strong>DATOS DE ENVÍO:</strong><br>
+                        Destinatario: ${nombre}<br>
+                        Dirección: ${direccion}</p>
+                    `;
+                }
+
+                // Mostrar la boleta o la factura al final usando SweetAlert2
+                let encabezadoDoc = "BOLETA ELECTRÓNICA"
+                let infoAdicional = ""
+                //Si se elige factura
+                if (tipoDocSeleccionado === "factura") {
+                    const rut = document.getElementById("rutFactura").value || "No ingresado";
+                    const giro = document.getElementById("giroFactura").value || "No ingresado";
+                    encabezadoDoc = "FACTURA ELECTRÓNICA";
+                    infoAdicional = `
+                        <p><strong>DATOS FACTURACIÓN:</strong><br>
+                        RUT: ${rut}<br>
+                        GIRO: ${giro}</p>
+                    `;
+                }
                 Swal.fire({
-                    title: '¡COMPRA EXITOSA!',
+                    title: `${encabezadoDoc}`,
                     html: `<div style="text-align: left; font-family: monospace;">
+                            <p>--------------------------------</p>
+                            ${infoAdicional} 
+                            ${datosEntregaHtml}
                             <p>--------------------------------</p>
                             <p>${listaProductos.replace(/\n/g, '<br>')}</p>
                             <p>--------------------------------</p>

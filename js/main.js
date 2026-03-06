@@ -2,29 +2,9 @@ const contenedor = document.getElementById("contenedorResultados")
 const buscador = document.getElementById("inputBusqueda")
 const botonBuscador = document.getElementById("btnBusqueda")
 
-function renderizarProductos(lista) {
-    contenedor.innerHTML = "" 
-    if (lista.length === 0) {
-        showToast ("No se encontraron coincidencias.", "#ff5f6d")
-        return
-    }else{
-        showToast ("Coincidencias encontradas:")
-        lista.forEach(producto => {
-            const card = document.createElement("div")
-            card.className = "cardProduct"
-            card.innerHTML = `
-                <img src="${producto.imagen || 'assets/img/placeholder.png'}" alt="${producto.nombre}" class="imgProducto">
-                <h4>${producto.nombre}</h4>
-                <p>${producto.autor}</p>
-                <p>$${producto.precio.toLocaleString('es-CL')}</p>`
-            contenedor.appendChild(card)
-        })
-    }
-}
-
 botonBuscador.onclick = () => {
     if (!contenedor) return; 
-    const itemBuscado = buscador.value.toLowerCase()
+    const itemBuscado = buscador.value.toLowerCase().trim()
     if (itemBuscado === "") {
         contenedor.innerHTML = ""
         return
@@ -32,7 +12,7 @@ botonBuscador.onclick = () => {
     const inventarioActual = JSON.parse(localStorage.getItem("inventarioCompleto"));
     
     if (!inventarioActual) {
-        showToast("Error: Inventario no cargado todavía.");
+        showToast("Error: Inventario no cargado todavía.", "#ff5f6d");
         return;
     }
 
@@ -44,14 +24,22 @@ botonBuscador.onclick = () => {
         ...inventarioActual.juegosMesa.map(p => ({...p, categoria: 'Juegos de Mesa'}))
     ]
     //Para asegurarse de encontrar todas las coincidencias con el termino ingresado
-    const filtrados = todosLosProductos.filter(p => 
-        p.nombre.toLowerCase().includes(itemBuscado.toLowerCase().trim()) ||
-        p.categoria.toLowerCase().includes(itemBuscado.toLowerCase().trim()) ||
-        p.autor.toLowerCase().includes(itemBuscado.toLowerCase().trim()) ||
-        p.precio.toString().includes(itemBuscado.toString().trim())
-    )
+    const filtrados = todosLosProductos.filter(p => {
+        const nombre = p.nombre.toLowerCase()
+        const autor = (p.autor || "").toLowerCase()
+        const categoria = p.categoria.toLowerCase()
+        const precio = p.precio.toString()
 
-    renderizarProductos(filtrados)
+        return (
+            nombre.includes(itemBuscado) || 
+            autor.includes(itemBuscado) || 
+            categoria.includes(itemBuscado) || 
+            precio.includes(itemBuscado)
+        );
+})
+    showToast("Productos encontrados");
+    renderProductos(filtrados, contenedor)
+    agregarAlCarrito();
     buscador.value = ""; 
 }
 

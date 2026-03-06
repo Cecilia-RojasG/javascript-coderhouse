@@ -86,5 +86,13 @@
         "autor": "NOSOLOROL",
         "precio": 59990,
         "existencia": 5
+    },
+    {
+        "codigo": 2012,
+        "imagen": "",
+        "nombre": "Los Libros Perdidos",
+        "autor": "YO",
+        "precio": 9990,
+        "existencia": 1000
     }
 ]
