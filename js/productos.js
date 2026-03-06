@@ -1,6 +1,7 @@
 const URL_LIBROS = "../db/libros.json"
 const URL_ROL = "../db/rol.json"
 const URL_MESA = "../db/mesa.json"
+const placeholder = "../assets/img/placeholder.png"
 
 let inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
 
@@ -15,7 +16,6 @@ function cargarInventario(){
     if (productsContainer) {
         // si un link a una imagen se rompe o no la imagen no esta
         productsContainer.addEventListener('error', function(event) {
-            const placeholder = "../assets/img/placeholder.png"
             if (event.target.tagName === 'IMG') {
                 // para evitar un bucle
                 if (event.target.src !== placeholder) {
@@ -78,7 +78,6 @@ function prepararCategoriasYRenderizar() {
 }
 
 function renderProductos (arrayDeProductos, contenedorSeccion) {
-    const placeholder = "../assets/img/placeholder.png"; 
     arrayDeProductos.forEach(producto => {
         const card = document.createElement("div")
         card.className = "cardProduct"
