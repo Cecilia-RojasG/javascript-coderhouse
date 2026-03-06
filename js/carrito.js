@@ -144,11 +144,11 @@ function renderCarrito (cartItems) {
     // Checkbox
     document.getElementById("checkEnvio").onchange = (e) => {
         if (e.target.checked) {
-            costoEnvio = costoEstandar;
+            costoEnvio = costoEstandar
         } else {
-            costoEnvio = 0;
+            costoEnvio = 0
         }
-        renderCarrito(cartItems); 
+        renderCarrito(cartItems)
     };
 
     // --- SECCIÓN DOCUMENTO (Boleta/Factura) ---
@@ -167,18 +167,18 @@ function renderCarrito (cartItems) {
     `;
     carroSeccion.appendChild(seccionDocumento);
     // Si se elige factura se muestra los datos de factura
-    const radioFactura = seccionDocumento.querySelectorAll('input[name="tipoDoc"]');
+    const radioFactura = seccionDocumento.querySelectorAll('input[name="tipoDoc"]')
     radioFactura.forEach(radio => {
         radio.onchange = (e) => {
             const panel = document.getElementById("datosFactura");
-            panel.style.display = e.target.value === "factura" ? "block" : "none";
+            panel.style.display = e.target.value === "factura" ? "block" : "none"
         }
     })
 
     //Para calcular valor Total
     totDes = parseInt(totalDescuento.toFixed(0))
     totalFinal = (totalParcial - totDes)
-    const totalFinalConEnvio = (totalParcial - totDes) + costoEnvio;
+    const totalFinalConEnvio = (totalParcial - totDes) + costoEnvio
     const valorTotal = document.createElement("div")
     valorTotal.className = "carritoTotal"
     valorTotal.innerHTML = `
@@ -241,7 +241,7 @@ function renderCarrito (cartItems) {
 
                 // En caso de que se marque la opcion de envio, debe pedir datos
                 const deseaEnvio = document.getElementById("checkEnvio").checked;
-                let datosEntregaHtml = "";
+                let datosEntregaHtml = ""
                 if (deseaEnvio) {
                     const nombre = document.getElementById("nombreCliente").value || "No especificado";
                     const direccion = document.getElementById("direccionCliente").value || "No especificada";
@@ -259,7 +259,7 @@ function renderCarrito (cartItems) {
                 if (tipoDocSeleccionado === "factura") {
                     const rut = document.getElementById("rutFactura").value || "No ingresado";
                     const giro = document.getElementById("giroFactura").value || "No ingresado";
-                    encabezadoDoc = "FACTURA ELECTRÓNICA";
+                    encabezadoDoc = "FACTURA ELECTRÓNICA"
                     infoAdicional = `
                         <p><strong>DATOS FACTURACIÓN:</strong><br>
                         RUT: ${rut}<br>

@@ -14,8 +14,8 @@ botonBuscador.onclick = () => {
     const inventarioActual = JSON.parse(localStorage.getItem("inventarioCompleto"));
     
     if (!inventarioActual) {
-        showToast("Error: Inventario no cargado todavía.", "#ff5f6d");
-        return;
+        showToast("Error: Inventario no cargado todavía.", "#ff5f6d")
+        return
     }
 
     //Para juntar todos los productos copiandolo con un map por categoria en un array, agregando la categoria correspondiente

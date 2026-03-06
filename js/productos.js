@@ -137,7 +137,7 @@ function agregarAlCarrito () {
                     carroProductos.push({ ...productoElegido, cantidad: 1 })
                 }
                 localStorage.setItem("carroProductos", JSON.stringify(carroProductos))
-                showToast(`Producto añadido: ${productoElegido.nombre}`);
+                showToast(`Producto añadido: ${productoElegido.nombre}`)
             }
         }
     })
