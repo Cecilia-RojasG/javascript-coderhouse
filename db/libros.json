@@ -1,7 +1,7 @@
 [                                       
     {
         "codigo": 1001,
-        "imagen": "",
+        "imagen": "../assets/img/libros/back.webp",
         "nombre": "We don't need roads: The Making of the Back to the Future Trilogy",
         "autor": "Caseen Grines",
         "precio":  21990,
@@ -9,7 +9,7 @@
     },
     {
         "codigo": 1002,
-        "imagen": "",
+        "imagen": "../assets/img/libros/choque.webp",
         "nombre": "Choque de Reyes",
         "autor": "George R.R. Martin",
         "precio": 14990,
@@ -17,7 +17,7 @@
     },
     {
         "codigo": 1003,
-        "imagen": "",
+        "imagen": "../assets/img/libros/cochrane.webp",
         "nombre": "Cochrane vs Cthulhu",
         "autor": "Gilberto Villarroel", 
         "precio": 17990,
@@ -25,7 +25,7 @@
     },
     {
         "codigo": 1004,
-        "imagen": "",
+        "imagen": "../assets/img/libros/frontera.webp",
         "nombre": "Frontera Sur",
         "autor": "Gillermo Parvex",
         "precio": 15990,
@@ -33,7 +33,7 @@
     },
     {
         "codigo": 1005,
-        "imagen": "",
+        "imagen": "../assets/img/libros/kellerman.webp",
         "nombre": "El Misterio de los Estudios Kellerman",
         "autor": "Ken Follet",
         "precio": 11990,
@@ -41,7 +41,7 @@
     },
     {
         "codigo": 1006,
-        "imagen": "",
+        "imagen": "../assets/img/libros/materia.webp",
         "nombre": "La Materia Oscura",
         "autor": "Phillip Pullman",
         "precio": 17990,
@@ -49,7 +49,7 @@
     },
     {
         "codigo": 1007,
-        "imagen": "",
+        "imagen": "../assets/img/libros/monica.webp",
         "nombre": "Mónica la niña daltónica y Federico el perro psicodélico",
         "autor": "",
         "precio": 3990,
@@ -57,7 +57,7 @@
     },
     {
         "codigo": 1008,
-        "imagen": "",
+        "imagen": "../assets/img/libros/orgullo.webp",
         "nombre": "Orgullo y Prejuicio + Zombies",
         "autor": "Gabriel Aiquel",
         "precio": 9990,
@@ -65,7 +65,7 @@
     },
     {
         "codigo": 1009,
-        "imagen": "",
+        "imagen": "../assets/img/libros/sobrenatural.webp",
         "nombre": "Sobrenatural",
         "autor": "Kiersten White",
         "precio": 19990,
@@ -73,7 +73,7 @@
     },
     {
         "codigo": 1010,
-        "imagen": "",
+        "imagen": "../assets/img/libros/sonar.webp",
         "nombre": "Soñar no cuesta nada",
         "autor": "Alberto Montt",
         "precio": 12990,
@@ -81,7 +81,7 @@
     },
     {
         "codigo": 1011,
-        "imagen": "",
+        "imagen": "../assets/img/libros/asimovii.webp",
         "nombre": "Viaje Alucinante II", 
         "autor": "Isaac Asimov",
         "precio": 10990,
@@ -89,7 +89,7 @@
     }, 
     {
         "codigo": 1012,
-        "imagen": "",
+        "imagen": "../assets/img/libros/viajeros.webp",
         "nombre": "Viajeros de la noche",
         "autor": "George R.R. Martin",
         "precio": 11990,
@@ -97,7 +97,7 @@
     },
     {
         "codigo": 1013,
-        "imagen": "",
+        "imagen": "../assets/img/libros/cieloenjaulado.webp",
         "nombre": "El cielo Enjaulado",
         "autor": "Christine Leunens",
         "precio": 6990,
@@ -105,7 +105,7 @@
     },
     {
         "codigo": 1014,
-        "imagen": "",
+        "imagen": "../assets/img/libros/walts.webp",
         "nombre": "Walt's Imagination",
         "autor": "Doreen Rapaport",
         "precio": 6990,

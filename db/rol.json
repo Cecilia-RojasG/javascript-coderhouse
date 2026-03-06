@@ -1,7 +1,7 @@
 [
     {
         "codigo": 2001,
-        "imagen": "",
+        "imagen": "../assets/img/rol/vampiro.webp",
         "nombre": "Vampiro",
         "autor": "WoD",
         "precio":59990,
@@ -9,7 +9,7 @@
         },
     {
         "codigo": 2002,
-        "imagen": "",
+        "imagen": "../assets/img/rol/hlobo.webp",
         "nombre": "Hombre Lobo",
         "autor": "Wod",
         "precio": 59990,
@@ -17,7 +17,7 @@
     },
     {
         "codigo": 2003,
-        "imagen": "",
+        "imagen": "../assets/img/rol/dndmaster.webp",
         "nombre": "D&D Manual del Master",
         "autor": "WotC",
         "precio": 65990,
@@ -25,7 +25,7 @@
     },
     {
         "codigo": 2004,
-        "imagen": "",
+        "imagen": "../assets/img/rol/dndjugador.webp",
         "nombre": "D&D Manual del Jugador",
         "autor": "WotC",
         "precio": 65990,
@@ -33,7 +33,7 @@
     },
     {
         "codigo": 2005,
-        "imagen": "",
+        "imagen": "../assets/img/rol/dndbrujaluz.webp",
         "nombre": "D&D Las Tierras mas allá de Brujaluz",
         "autor": "WotC",
         "precio": 49990,
@@ -41,7 +41,7 @@
     },
     {
         "codigo": 2006,
-        "imagen": "",
+        "imagen": "../assets/img/rol/l5r.webp",
         "nombre": "L5R",
         "autor": "FFG",
         "precio": 45990,
@@ -49,7 +49,7 @@
     },
     {
         "codigo": 2007,
-        "imagen": "",
+        "imagen": "../assets/img/rol/confidencial.webp",
         "nombre": "Cthulhu Confidencial",
         "autor": "EDGE",
         "precio": 39990,
@@ -57,7 +57,7 @@
     },
     {
         "codigo": 2008,
-        "imagen": "",
+        "imagen": "../assets/img/rol/7mar.webp",
         "nombre": "7mar",
         "autor": "NOSOLOROL",
         "precio": 54990,
@@ -65,7 +65,7 @@
     },
     {
         "codigo": 2009,
-        "imagen": "",
+        "imagen": "../assets/img/rol/alien.webp",
         "nombre": "Alien",
         "autor": "EDGE",
         "precio": 52990,
@@ -73,7 +73,7 @@
     }, 
     {
         "codigo": 2010,
-        "imagen": "",
+        "imagen": "../assets/img/rol/changeling.webp",
         "nombre": "Changeling",
         "autor": "WoD",
         "precio": 5990,
@@ -81,7 +81,7 @@
     },  
     {
         "codigo": 2011,
-        "imagen": "",
+        "imagen": "../assets/img/rol/forbidden.webp",
         "nombre": "Forbidden lands",
         "autor": "NOSOLOROL",
         "precio": 59990,
@@ -89,7 +89,7 @@
     },
     {
         "codigo": 2012,
-        "imagen": "",
+        "imagen": "../assets/img/rol/librosper.webp",
         "nombre": "Los Libros Perdidos",
         "autor": "YO",
         "precio": 9990,

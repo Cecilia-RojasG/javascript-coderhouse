@@ -1,7 +1,7 @@
 [
     {
         "codigo": 3001,
-        "imagen": "",
+        "imagen": "../assets/img/mesa/catan.webp",
         "nombre": "Catan",
         "autor": "Devir",
         "precio": 34990,
@@ -9,7 +9,7 @@
     },  
     {
         "codigo": 3002,
-        "imagen": "",
+        "imagen": "../assets/img/mesa/azul.webp",
         "nombre": "Azul - Master Chocolatier",
         "autor": "Next Move",
         "precio": 44990,
@@ -17,7 +17,7 @@
     },  
     {
         "codigo": 3003,
-        "imagen": "",
+        "imagen": "../assets/img/mesa/munchkin.webp",
         "nombre": "Munchkin",
         "autor": "EDGE",
         "precio": 25990,
@@ -25,7 +25,7 @@
     },  
     {
         "codigo": 3004,
-        "imagen": "",
+        "imagen": "../assets/img/mesa/monopoly.webp",
         "nombre": "Monopoly",
         "autor": "Hasbro",
         "precio": 19900,
@@ -33,7 +33,7 @@
     },  
     {
         "codigo": 3005,
-        "imagen": "",
+        "imagen": "../assets/img/mesa/carcassone.webp",
         "nombre": "Carcassone",
         "autor": "Devir",
         "precio": 29990,

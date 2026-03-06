@@ -65,6 +65,17 @@ function prepararCategoriasYRenderizar() {
 }
 
 function renderProductos (arrayDeProductos, contenedorSeccion) {
+    // si un link a una imagen se rompe o no la imagen no esta
+    productsContainer.addEventListener('error', function(event) {
+        if (event.target.tagName === 'IMG') {
+            const placeholder = "../assets/img/placeholder.png"
+            // para evitar un bucle
+            if (event.target.src !== placeholder) {
+                event.target.src = placeholder
+            }
+        }
+    }, true); 
+
     arrayDeProductos.forEach(producto => {
         const card = document.createElement("div")
         card.className = "cardProduct"
@@ -75,7 +86,7 @@ function renderProductos (arrayDeProductos, contenedorSeccion) {
         const atributoDisabled = hayExistencia ? "" : "disabled"
 
         card.innerHTML = `
-            <img src="${producto.imagen || '../assets/img/placeholder.png'}" alt="${producto.nombre}" class="imgProducto">
+            <img src="${producto.imagen || placeholder}" alt="${producto.nombre}" class="imgProducto">
             <h4>${producto.nombre}</h4>
             <p>${producto.autor}</p>
             <p>$${producto.precio.toLocaleString('es-CL')}</p>
