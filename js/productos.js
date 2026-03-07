@@ -97,7 +97,7 @@ function renderProductos (arrayDeProductos, contenedorSeccion) {
         const atributoDisabled = hayExistencia ? "" : "disabled"
 
         card.innerHTML = `
-            <img src="${rutaImagen} || placeholder}" alt="${producto.nombre}" class="imgProducto">
+            <img src="${rutaImagen}" alt="${producto.nombre}" class="imgProducto">
             <h4>${producto.nombre}</h4>
             <p>${producto.autor}</p>
             <p>$${producto.precio.toLocaleString('es-CL')}</p>
