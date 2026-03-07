@@ -1,15 +1,12 @@
 // Obtenemos la base de la URL actual
 const repoNombre = "/javascript-coderhouse/";
-const pathActual = window.location.pathname;
-
-// Si la ruta NO tiene el nombre del repo (como en Localhost), usamos vacio
-const base = pathActual.includes(repoNombre) ? repoNombre : ""; 
+const base = window.location.pathname.includes(repoNombre) ? repoNombre : "";
 
 // Construimos las URLs asegurando que apunten a la carpeta db del proyecto
 const URL_LIBROS = base + "db/libros.json";
 const URL_ROL = base + "db/rol.json";
 const URL_MESA = base + "db/mesa.json";
-const placeholder = base + "img/placeholder.png"
+const placeholder = base + "assets/img/placeholder.png"
 
 let inventarioGuardado = JSON.parse(localStorage.getItem("inventarioCompleto"))
 
@@ -86,13 +83,10 @@ function prepararCategoriasYRenderizar() {
 }
 
 function renderProductos (arrayDeProductos, contenedorSeccion) {
-    const baseURL = window.location.pathname.includes("/javascript-coderhouse/") 
-        ? "/javascript-coderhouse/" 
-        : "";
     arrayDeProductos.forEach(producto => {
         const rutaImagen = producto.imagen 
-            ? (baseURL + producto.imagen) 
-            : (baseURL + "assets/img/placeholder.png");
+            ? (base + producto.imagen) 
+            : (base + "assets/img/placeholder.png")
         
         const card = document.createElement("div")
         card.className = "cardProduct"
@@ -103,7 +97,7 @@ function renderProductos (arrayDeProductos, contenedorSeccion) {
         const atributoDisabled = hayExistencia ? "" : "disabled"
 
         card.innerHTML = `
-            <img src="${{rutaImagen} || placeholder}" alt="${producto.nombre}" class="imgProducto">
+            <img src="${rutaImagen} || placeholder}" alt="${producto.nombre}" class="imgProducto">
             <h4>${producto.nombre}</h4>
             <p>${producto.autor}</p>
             <p>$${producto.precio.toLocaleString('es-CL')}</p>
